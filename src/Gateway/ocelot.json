@@ -1,0 +1,21 @@
+{
+	"ReRoutes": [
+		{
+			"UseServiceDiscovery": true,
+			"DownstreamPathTemplate": "/TestService/{anything}",
+			"DownstreamScheme": "http",
+			"ServiceName": "TestService1",
+			"UpstreamPathTemplate": "/api/gateway/catalog/{anything}",
+			"UpstreamHttpMethod": [ "Get", "Post" ],
+			"ReRoutesCaseSensitive": false
+		}
+	],
+	"GlobalConfiguration": {
+		"ServiceDiscoveryProvider": {
+			"Host": "localhost",
+      "Port": 8500,
+      "ConfigurationKey": "TestGateway",
+      "Type": "Consul"
+		}
+	}
+}
