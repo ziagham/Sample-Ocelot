@@ -8,17 +8,17 @@ using Microsoft.Extensions.Logging;
 namespace Service1.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class TestServiceController : ControllerBase
+    [Route("api/[controller]")]
+    public class CategoryController : ControllerBase
     {
         private readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<TestServiceController> _logger;
+        private readonly ILogger<CategoryController> _logger;
 
-        public TestServiceController(ILogger<TestServiceController> logger)
+        public CategoryController(ILogger<CategoryController> logger)
         {
             _logger = logger;
         }

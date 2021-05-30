@@ -1,0 +1,34 @@
+{
+	"GlobalConfiguration": {
+		"RequestIdKey": "OcRequestId",
+      	"AdministrationPath": "/administration",
+		"UseServiceDiscovery": true,
+		"ServiceDiscoveryProvider": {
+			"Host": "localhost",
+      		"Port": 8500,
+      		"Type":"Consul"
+		}
+	},
+	"RateLimitOptions": {
+		"ClientWhitelist": [],
+		"EnableRateLimiting": true,
+		"Period": "1s",
+		"HttpStatusCode": 428,
+		"QuotaExceededMessage": "Too many requests...",
+		"PeriodTimespan": 1,
+		"Limit": 1
+	},
+	"HttpHandlerOptions": {
+		"UseTracing": true
+	},
+	"LoadBalancerOptions": {
+		"Type": "LeastConnection",
+		"Key": null,
+		"Expiry": 0
+	},
+	"QoSOptions": {
+		"ExceptionsAllowedBeforeBreaking": 3,
+		"DurationOfBreak": 10000,
+		"TimeoutValue": 5000
+	}
+}

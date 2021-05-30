@@ -17,30 +17,14 @@ namespace Gateway
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run(); 
         }
 
-        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((hostingContext, config) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
             {
-                config
-                    .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                    .AddJsonFile("appsettings.json", true, true)
-                    .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
-                    .AddJsonFile("ocelot.json")
-                    .AddEnvironmentVariables();
-            })
-            .ConfigureServices(services =>
-            {
-                services
-                    .AddOcelot()
-                    .AddConsul()
-                    .AddConfigStoredInConsul();
-            })
-            .Configure(app =>
-            {
-                app.UseOcelot().Wait();
+                webBuilder.UseStartup<Startup>();
             });
     }
 }

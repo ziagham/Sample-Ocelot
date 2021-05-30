@@ -46,13 +46,11 @@ namespace Service1
             var addresses = features.Get<IServerAddressesFeature>();
             var address = addresses.Addresses.First();
 
-            Console.WriteLine($"address={address}");
-
             if (!options.Enabled)
                 return app;
 
             Guid serviceId = Guid.NewGuid();
-            string consulServiceID = $"{options.ServiceName}:{serviceId}";
+            string consulServiceID = $"{options.ServiceName}-{serviceId}";
             Uri uri = new Uri(address);
 
             var registration = new AgentServiceRegistration()
