@@ -44,21 +44,16 @@ namespace Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                //.AddSwaggerForOcelot(Configuration)
                 .AddOcelot(Configuration)
                 .AddConsul();
-                //.AddConfigStoredInConsul();
+                // .AddConfigStoredInConsul();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
-
-            // app.UseSwaggerForOcelotUI(opt => {
-            //     opt.PathToSwaggerGenerator = "/swagger/docs";
-            // });
-
+            
             app
                 .UseOcelot()
                 .Wait();

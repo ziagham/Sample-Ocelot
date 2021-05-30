@@ -1,0 +1,26 @@
+{
+    "Routes": [
+		{
+            "DownstreamPathTemplate": "/api/User",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/web/users",
+            "UpstreamHttpMethod": [ "Get" ],
+            "ServiceName": "user-service",
+            "FileCacheOptions": { "TtlSeconds": 15 },
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            }
+		},
+        {
+            "DownstreamPathTemplate": "/api/User/get/{id}",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/web/user/{id}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "ServiceName": "user-service",
+            "FileCacheOptions": { "TtlSeconds": 15 },
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            }
+		}
+	]
+}
