@@ -1,21 +1,24 @@
 {
 	"ReRoutes": [
 		{
-			"UseServiceDiscovery": true,
-			"DownstreamPathTemplate": "/TestService/{anything}",
+			"UseServiceDiscovery": false,
+			"DownstreamPathTemplate": "/TestService",
 			"DownstreamScheme": "http",
 			"ServiceName": "TestService1",
-			"UpstreamPathTemplate": "/api/gateway/catalog/{anything}",
-			"UpstreamHttpMethod": [ "Get", "Post" ],
+			"UpstreamPathTemplate": "/api/gateway/catalog",
+			"UpstreamHttpMethod": [ "Get" ],
 			"ReRoutesCaseSensitive": false
 		}
 	],
 	"GlobalConfiguration": {
+		"RequestIdKey": null,
 		"ServiceDiscoveryProvider": {
+			"Scheme": "http",
 			"Host": "localhost",
-      "Port": 8500,
-      "ConfigurationKey": "TestGateway",
-      "Type": "Consul"
+      		"Port": 8500,
+      		"ConfigurationKey": "TestGateway",
+      		"Type": "PollConsul",
+      		"PollingInterval": 5000
 		}
 	}
 }

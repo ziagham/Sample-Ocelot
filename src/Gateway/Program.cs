@@ -21,25 +21,26 @@ namespace Gateway
         }
 
         public static IWebHostBuilder CreateHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)  
-            .ConfigureAppConfiguration((hostingContext, config) =>  
+            WebHost.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((hostingContext, config) =>
             {
-                config  
-                .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                .AddJsonFile("appsettings.json", true, true)
-                .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
-                .AddJsonFile("ocelot.json")
-                .AddEnvironmentVariables(); 
+                config
+                    .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                    .AddJsonFile("appsettings.json", true, true)
+                    .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+                    .AddJsonFile("ocelot.json")
+                    .AddEnvironmentVariables();
             })
-            .ConfigureServices(services =>  
-            {  
-                services.AddOcelot()
-                    .AddConsul()  
-                    .AddConfigStoredInConsul();  
-            })
-            .Configure(app =>  
+            .ConfigureServices(services =>
             {
-                app.UseOcelot().Wait();  
+                services
+                    .AddOcelot()
+                    .AddConsul()
+                    .AddConfigStoredInConsul();
+            })
+            .Configure(app =>
+            {
+                app.UseOcelot().Wait();
             });
     }
 }
